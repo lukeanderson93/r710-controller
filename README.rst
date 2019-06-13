@@ -1,4 +1,5 @@
-# r710-controller
+r710-controller
+========================
 
 Installation
 ------------
@@ -12,9 +13,9 @@ Install ipmitool and clone the repository
 Usage
 -----
 
-.. code:: python
+.. code-block:: python
     from controller import Server
-
+    
     if __name__ == '__main__':
     
         # set environment variable: IDRAC_PASSWORD, or provide it here.
