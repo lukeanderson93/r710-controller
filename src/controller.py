@@ -31,8 +31,9 @@ class IpmiMessage():
                 self.__command
             )
         except subprocess.CalledProcessError as e:
-            print(f'[IPMI] - There was an error in the IPMI message, is ipmitool installed?')
-            raise(e)
+            print(e)
+            err = f'[IPMI] - There was an error in the IPMI message, is ipmitool installed?'
+            raise ValueError(err)
         return self
 
 
@@ -70,7 +71,7 @@ class Server():
             raise ValueError(err)
 
         self.__password_redacted = '*' * len(self.__password)
-        print(f'[IPMI] - ({self.__host}), User: {self.__username}, Password: {self.__password_redacted}')
+        print(f'[IPMI] - ({self.__host}) - User: {self.__username}, Password: {self.__password_redacted}')
 
     def do_cmd(self, cmd):
         """
@@ -98,7 +99,7 @@ class Server():
         Turns on the device. Optionally provide a fanspeed percentage to change to after boot.
         Returns: the response (if any) from the server
         """
-        print(f'[IPMI] - ({self.__host}) - Turning on.')
+        print(f'[IPMI] - ({self.__host}) - Powering on.')
         out = self.do_cmd(cmd='power on')
         if fan_speed_pct is not None:
             if not (fan_speed_pct >= 1 and fan_speed_pct <= 100):
@@ -163,7 +164,6 @@ class Server():
             temp = int(r.group(0))
         else:
             temp = 0
-        print(f'[IPMI] - ({self.__host}) - Ambient temp: {temp}')
         return temp
 
     def set_fan_speed_auto(self):
@@ -194,5 +194,4 @@ class Server():
         r = re.findall(r'(\d{3,})(?= RPM)', out)
         if len(r) == 0:
             r = [0]
-        print(f'[IPMI] - ({self.__host}) - Fan speed max: {max(r)} min: {min(r)}')
         return int(max(r))
