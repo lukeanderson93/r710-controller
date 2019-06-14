@@ -116,6 +116,8 @@ Submitting raw commands:
     s = Server(host='192.168.1.6', username='root', password='********')
     print(s.do_cmd('sdr list'))
 
+Output:
+
 .. code:: bash
 
     [IPMI] - (192.168.1.6) - User: root, Password: **********
@@ -131,12 +133,15 @@ Submitting raw commands:
     0.75 VTT CPU2 PG | 0x00              | ok
     [...]
 
+Submitting raw commands:
 
 .. code:: python
 
     from controller import Server
     s = Server(host='192.168.1.6', username='root', password='********')
     print(s.do_cmd('chassis power'))
+
+Output:
 
 .. code:: bash
 
