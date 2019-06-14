@@ -28,22 +28,20 @@ Output:
     [IPMI] - (192.168.1.6) - Turning on.
     [IPMI] - (192.168.1.6) - Activating manual fan control, fan speed: 10%.
 
-Getting sensor data
+Getting sensor data:
 
 .. code:: python
  
     print(s.get_power_status())
     print(s.get_fan_speed())
     print(s.get_temp())
+    
+Submitting raw commands:
+
+.. code:: python
+
     print(s.do_cmd('sdr list'))
     
-Output:
-
-.. code:: bash
-
-    ON
-    2260
-    26
 
 A simple script to keep fanspeed low. Not recommended for servers with high CPU usage.
 
@@ -64,7 +62,7 @@ A simple script to keep fanspeed low. Not recommended for servers with high CPU 
             s.set_fan_speed_auto()
         time.sleep(60)
 
-Alternatively, set the fan speed based on the current temperature (set up as system service, or use a cron job).
+Alternatively, set the fan speed based on the current temperature (could be set up as system service, or cron job).
 
 .. code:: python
 
@@ -90,6 +88,7 @@ Alternatively, set the fan speed based on the current temperature (set up as sys
             # raise an error, send an email, do an alert, etc.
             pass
 
+Powering down:
 
 .. code:: python
     
@@ -101,8 +100,6 @@ Output:
 
     [IPMI] - (192.168.1.6), User: root, Password: **********
     [IPMI] - (192.168.1.6) - Executing graceful shutdown.
-
-
 
 
 License
