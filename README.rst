@@ -31,7 +31,9 @@ Output:
 Getting sensor data:
 
 .. code:: python
- 
+    
+    from controller import Server
+    s = Server(host='192.168.1.6', username='root', password='********')
     print(f'Power status: {s.get_power_status()}')
     print(f'Fan speed: {s.get_fan_speed()}')
     print(f'Ambient temp: {s.get_temp()}')
@@ -96,6 +98,8 @@ Powering down:
 
 .. code:: python
     
+    from controller import Server
+    s = Server(host='192.168.1.6', username='root', password='********')
     s.power_off_soft()
 
 Output:
@@ -108,6 +112,8 @@ Submitting raw commands:
 
 .. code:: python
 
+    from controller import Server
+    s = Server(host='192.168.1.6', username='root', password='********')
     print(s.do_cmd('sdr list'))
 
 .. code:: bash
@@ -128,6 +134,8 @@ Submitting raw commands:
 
 .. code:: python
 
+    from controller import Server
+    s = Server(host='192.168.1.6', username='root', password='********')
     print(s.do_cmd('chassis power'))
 
 .. code:: bash
