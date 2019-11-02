@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+    server:
+        build: .
+        environment:
+            IDRAC_IP: $IDRAC_IP
+            IDRAC_USER: $IDRAC_USERNAME
+            IDRAC_PASSWORD: $IDRAC_PASSWORD
+
